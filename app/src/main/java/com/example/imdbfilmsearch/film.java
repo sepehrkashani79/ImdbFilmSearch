@@ -16,6 +16,10 @@ import java.util.List;
 import cz.msebera.android.httpclient.Header;
 
 public class film {
+    public film(String name) {
+        this.name = name;
+    }
+
     public film(String name, String poster) {
         this.name = name;
         this.poster = poster;
@@ -27,28 +31,31 @@ public class film {
     String description;
     String poster;
 
-    public static List<film> searchByName(String title) {
-        final String addres="http://www.omdbapi.com/?apikey=70ad462a&type=movie&s="+title;
+    public static List<String> searchByName(String title) {
+        final String addres="http://www.omdbapi.com/?apikey=70ad462a&s="+title;
 //        String searchResult;
-        ArrayList<film> results =new ArrayList<film>();
+//        ArrayList<film> results =new ArrayList<film>();
         findInImdb(addres);
         Log.d("mytag",searchResult);
         try{
             JSONObject all = new JSONObject(film.searchResult);
-            JSONArray filmArray = new JSONArray(all.getString("search"));
+            JSONArray filmArray = new JSONArray(all.getString("Search"));
+            ArrayList<String> results =new ArrayList<>();
             for (int i = 0; i < filmArray.length(); i++) {
                 JSONObject jsonobject = filmArray.getJSONObject(i);
-                String name = jsonobject.getString("title");
-                String pic=jsonobject.getString("poster");
-                results.add(new film(name,pic));
+                String name = jsonobject.getString("Title");
+//                String pic=jsonobject.getString("poster");
+//                results.add(new film(name,pic));
+                results.add(name);
                 Log.d("mytag",name);
 
 
             }
+            return results;
         }catch(Exception e){
             e.printStackTrace();
         }
-        return results;
+        return null;
 
     }
     public static void findInImdb(final String addres){

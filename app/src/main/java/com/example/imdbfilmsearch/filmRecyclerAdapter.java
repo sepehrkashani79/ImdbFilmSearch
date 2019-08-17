@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class filmRecyclerAdapter extends RecyclerView.Adapter<filmRecyclerAdapter.filmRecyclerHolder> {
-    List<film> filmList=null;
+    List<String> filmList=null;
 
 //    public filmRecyclerAdapter(List<film> filmList) {
 //        this.filmList = filmList;
@@ -28,7 +28,7 @@ public class filmRecyclerAdapter extends RecyclerView.Adapter<filmRecyclerAdapte
 
     @Override
     public void onBindViewHolder(@NonNull filmRecyclerHolder holder, int position) {
-        holder.title.setText(filmList.get(position).name);
+        holder.title.setText(filmList.get(position));
 //        holder.pic.setImageResource(filmList.get(position).poster);
     }
 
@@ -39,11 +39,11 @@ public class filmRecyclerAdapter extends RecyclerView.Adapter<filmRecyclerAdapte
 
     class filmRecyclerHolder extends RecyclerView.ViewHolder {
         TextView title;
-        ImageView pic;
+//        ImageView pic;
         public filmRecyclerHolder(@NonNull View itemView) {
             super(itemView);
             title=itemView.findViewById(R.id.movieTitle);
-            pic= itemView.findViewById(R.id.moviePoster);
+//            pic= itemView.findViewById(R.id.moviePoster);
 
         }
     }
