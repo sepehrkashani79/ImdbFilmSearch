@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="158dp"
+    android:orientation="horizontal"
+    android:layout_margin="5dp"
+    android:background="#d1dbd0"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/moviePoster"
+        android:layout_width="100dp"
+        android:layout_margin="5dp"
+        android:src="@drawable/use"
+        android:scaleType="fitXY"
+        android:layout_height="match_parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/movieTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textSize="20sp"
+            android:layout_marginBottom="5dp"
+
+            />
+        <TextView
+            android:id="@+id/movieRate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rating:"
+            android:layout_marginBottom="5dp"
+            />
+
+        <TextView
+            android:id="@+id/moviePlot"
+            android:layout_width="match_parent"
+            android:layout_height="104dp"
+            android:text="Description"
+            android:textColor="@android:color/black" />
+
+    </LinearLayout>
+</LinearLayout>
