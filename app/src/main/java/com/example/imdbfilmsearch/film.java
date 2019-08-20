@@ -1,6 +1,8 @@
 package com.example.imdbfilmsearch;
 import android.util.Log;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.loopj.android.http.*;
 
 import org.json.JSONArray;
@@ -30,41 +32,34 @@ public class film {
     int rate;
     String description;
     String poster;
+    static ArrayList<film> results=new ArrayList<>();
 
-    public static List<String> searchByName(String title) {
+    public static void searchByName(String title , final RecyclerView recycler, final filmRecyclerAdapter adapter) {
         final String addres="http://www.omdbapi.com/?apikey=70ad462a&s="+title;
-//        String searchResult;
-//        ArrayList<film> results =new ArrayList<film>();
-        findInImdb(addres);
-        Log.d("mytag",searchResult);
-        try{
-            JSONObject all = new JSONObject(film.searchResult);
-            JSONArray filmArray = new JSONArray(all.getString("Search"));
-            ArrayList<String> results =new ArrayList<>();
-            for (int i = 0; i < filmArray.length(); i++) {
-                JSONObject jsonobject = filmArray.getJSONObject(i);
-                String name = jsonobject.getString("Title");
-//                String pic=jsonobject.getString("poster");
-//                results.add(new film(name,pic));
-                results.add(name);
-                Log.d("mytag",name);
-
-
-            }
-            return results;
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return null;
-
-    }
-    public static void findInImdb(final String addres){
+        results.clear();
         AsyncHttpClient client =new AsyncHttpClient();
         client.get(addres,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
-                film.searchResult=response.toString();
+                System.out.println(response.toString());
+                try{
+                    JSONObject all = new JSONObject(response.toString());
+                    JSONArray filmArray = new JSONArray(all.getString("Search"));
+
+
+                    for (int i = 0; i < filmArray.length(); i++) {
+                        JSONObject jsonobject = filmArray.getJSONObject(i);
+                        String name = jsonobject.getString("Title");
+                        String pic = jsonobject.getString("Poster");
+                        results.add(new film(name,pic));
+                        Log.d("myTag",name);
+                    }
+                    adapter.filmList=results;
+                    recycler.setAdapter(adapter);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -72,43 +67,20 @@ public class film {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
             }
         });
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                //String result="";
-//                try {
-//
-//                    URL obj = new URL(addres);
-//
-//                    HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-//                    con.setRequestMethod("GET");
-//                    con.setRequestProperty("User-Agent", "Mozilla/5.0");
-//
-//                    int responseCode = con.getResponseCode();
-//
-//                    if (responseCode == HttpURLConnection.HTTP_OK) {
-//
-//                        BufferedReader in = new BufferedReader(new InputStreamReader(
-//                                con.getInputStream()));
-//
-//                        String inputLine;
-//                        StringBuffer response = new StringBuffer();
-//                        while ((inputLine = in.readLine()) != null) {
-//                            response.append(inputLine);
-//                        }
-//
-//
-//                        film.searchResult=response.toString();
-//                    }
-//
-//
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//                //return result;
-//
-//            }
-//        }).start();
+
+
+
+
+
+
+
+
+
+
+
+
+        //return results;
 
     }
+
 }

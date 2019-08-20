@@ -19,22 +19,17 @@ public class MainActivity extends AppCompatActivity {
         Button search =findViewById(R.id.btnSearch);
         final EditText txtFilmName=findViewById(R.id.txtFilmName);
         final RecyclerView filmList=findViewById(R.id.filmListRecycler);
-        final filmRecyclerAdapter adapter=null;
-        filmList.setAdapter(adapter);
+        final filmRecyclerAdapter adapter=new filmRecyclerAdapter();
         filmList.setLayoutManager(new LinearLayoutManager(MainActivity.this,RecyclerView.VERTICAL,false));
-        //film.searchByName("war");
+
 
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("mytag",txtFilmName.getText().toString());
-                adapter.filmList=film.searchByName(txtFilmName.getText().toString());
-//                adapter.onBindViewHolder();
+                film.searchByName(txtFilmName.getText().toString(),filmList,adapter);
             }
         });
-
-
-
     }
 }

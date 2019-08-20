@@ -9,10 +9,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class filmRecyclerAdapter extends RecyclerView.Adapter<filmRecyclerAdapter.filmRecyclerHolder> {
-    List<String> filmList=null;
+    List<film> filmList=null;
 
 //    public filmRecyclerAdapter(List<film> filmList) {
 //        this.filmList = filmList;
@@ -28,8 +30,9 @@ public class filmRecyclerAdapter extends RecyclerView.Adapter<filmRecyclerAdapte
 
     @Override
     public void onBindViewHolder(@NonNull filmRecyclerHolder holder, int position) {
-        holder.title.setText(filmList.get(position));
+        holder.title.setText(filmList.get(position).name);
 //        holder.pic.setImageResource(filmList.get(position).poster);
+        Picasso.get().load(filmList.get(position).poster).into(holder.pic);
     }
 
     @Override
@@ -39,12 +42,13 @@ public class filmRecyclerAdapter extends RecyclerView.Adapter<filmRecyclerAdapte
 
     class filmRecyclerHolder extends RecyclerView.ViewHolder {
         TextView title;
-//        ImageView pic;
+        ImageView pic;
         public filmRecyclerHolder(@NonNull View itemView) {
             super(itemView);
             title=itemView.findViewById(R.id.movieTitle);
-//            pic= itemView.findViewById(R.id.moviePoster);
+            pic= itemView.findViewById(R.id.moviePoster);
 
         }
     }
+
 }
