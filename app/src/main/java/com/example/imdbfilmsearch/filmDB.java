@@ -14,17 +14,19 @@ public class filmDB extends SQLiteOpenHelper {
 
     public filmDB(Context context,String dbName) {
 //        super(context, name, factory, version);
-        super(context, "name11", null, 1);
+        super(context, "name11", null, 2);
         this.dbName = dbName;
-        db_create_query="CREAT TABLE "+dbName+"("
-                +"_id integer primary key AUTOINCREMENT,"
-                +"filmName text,"
-                +"filmPosterLink text";
+
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        db_create_query="CREATE TABLE "+dbName+"("
+                +"_id integer primary key AUTOINCREMENT,"
+                +"filmName text,"
+                +"filmPosterLink text";
         sqLiteDatabase.execSQL(db_create_query);
+        Log.d("myTag","database created");
     }
 
     @Override
@@ -33,6 +35,7 @@ public class filmDB extends SQLiteOpenHelper {
     }
     public void insert(String filmName,String posterLink){
         String insert_query="INSERT INTO "+dbName+"(filmName, filmPosterLink)"+"VALUES('"+filmName+"','"+posterLink+"')";
+        Log.d("myTag","opened writable database");
         SQLiteDatabase db = this.getWritableDatabase();
         Log.d("myTag","opened writable database");
         db.execSQL(insert_query);
