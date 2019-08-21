@@ -21,7 +21,11 @@ public class MainActivity extends AppCompatActivity {
         final RecyclerView filmList=findViewById(R.id.filmListRecycler);
         final filmRecyclerAdapter adapter=new filmRecyclerAdapter();
         filmList.setLayoutManager(new LinearLayoutManager(MainActivity.this,RecyclerView.VERTICAL,false));
-
+        film.searchByName("gun",filmList,adapter);
+        Button addToDb=findViewById(R.id.btnAddToDb);
+        Button showDb=findViewById(R.id.btnShowDb);
+        Button deleteDb=findViewById(R.id.btnDeleteDb);
+        final filmDB film_database=new filmDB(this,"filmdb");
 
 
         search.setOnClickListener(new View.OnClickListener() {
@@ -31,5 +35,29 @@ public class MainActivity extends AppCompatActivity {
                 film.searchByName(txtFilmName.getText().toString(),filmList,adapter);
             }
         });
+
+
+        addToDb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                film_database.insert_list(adapter.filmList);
+
+            }
+        });
+        showDb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adapter.filmList=film_database.getAllFilms();
+                filmList.setAdapter(adapter);
+            }
+        });
+
+        deleteDb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                film_database.delete_db_contents();
+            }
+        });
+
     }
 }

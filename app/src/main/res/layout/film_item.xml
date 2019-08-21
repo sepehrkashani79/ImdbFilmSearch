@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="158dp"
+    android:layout_height="140dp"
     android:orientation="horizontal"
     android:layout_margin="5dp"
     android:background="#d1dbd0"
@@ -19,6 +19,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical">
         <TextView
             android:id="@+id/movieTitle"
@@ -27,22 +28,10 @@
             android:text="Title"
             android:textSize="20sp"
             android:layout_marginBottom="5dp"
-
-            />
-        <TextView
-            android:id="@+id/movieRate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Rating:"
-            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:layout_gravity="center"
             />
 
-        <TextView
-            android:id="@+id/moviePlot"
-            android:layout_width="match_parent"
-            android:layout_height="104dp"
-            android:text="Description"
-            android:textColor="@android:color/black" />
 
     </LinearLayout>
 </LinearLayout>

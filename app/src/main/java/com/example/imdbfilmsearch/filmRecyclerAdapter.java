@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class filmRecyclerAdapter extends RecyclerView.Adapter<filmRecyclerAdapter.filmRecyclerHolder> {
-    List<film> filmList=null;
+    ArrayList<film> filmList=null;
 
 //    public filmRecyclerAdapter(List<film> filmList) {
 //        this.filmList = filmList;

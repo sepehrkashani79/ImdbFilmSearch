@@ -23,6 +23,29 @@
             />
 
     </LinearLayout>
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnAddToDb"
+            android:layout_width="122dp"
+            android:layout_height="wrap_content"
+            android:text="+ add to db" />
+
+        <Button
+            android:id="@+id/btnShowDb"
+            android:layout_width="148dp"
+            android:layout_height="wrap_content"
+            android:text="show db" />
+
+        <Button
+            android:id="@+id/btnDeleteDb"
+            android:layout_width="119dp"
+            android:layout_height="wrap_content"
+            android:text="* delete db" />
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
